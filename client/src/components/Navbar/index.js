@@ -11,7 +11,7 @@ function Navbar() {
         </div>
         <ul className={styles.menu}>
           <li>
-            <Link to={"/products"}>Products</Link>
+            <Link to={"/"}>Products</Link>
           </li>
           <li>
             <Link to={"about"}>About</Link>
