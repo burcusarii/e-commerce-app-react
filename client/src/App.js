@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Signin from "./pages/auth/Signin";
 import Singup from "./pages/auth/Signup";
+import Products from "./pages/products";
 function App() {
   return (
     <div>
@@ -11,7 +12,7 @@ function App() {
 
         <div id="content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Products />} />
             <Route path="about" element={<About />} />
             <Route path="signin" element={<Signin />} />
             <Route path="signup" element={<Singup />} />
@@ -22,9 +23,6 @@ function App() {
   );
 }
 
-function Home() {
-  return <div>Home</div>;
-}
 function About() {
   return <div>About</div>;
 }
