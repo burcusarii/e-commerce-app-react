@@ -1,26 +1,59 @@
 import React from "react";
 import Card from "../../components/Card";
-import { Grid } from "@chakra-ui/react";
-import { useQuery } from "react-query";
+import { Grid, Flex, Button } from "@chakra-ui/react";
+import { useInfiniteQuery } from "react-query";
+import { fetchProductList } from "../../api";
 
 function Products() {
-  const { isLoading, error, data } = useQuery("products", () =>
-    fetch("http://localhost:4000/product").then((res) => res.json())
-  );
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery("products", fetchProductList, {
+    getNextPageParam: (lastGroup, allGroups) => {
+      const morePagesExist = lastGroup?.length === 12;
 
-  if (isLoading) return "Loading...";
+      if (!morePagesExist) {
+        return;
+      }
 
-  if (error) return "An error has occurred: " + error.message;
+      return allGroups.length + 1;
+    },
+  });
+
+  if (status === "loading") return "Loading...";
+
+  if (status === "error") return "An error has occurred: " + error.message;
 
   console.log("data", data);
 
   return (
     <div>
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-        {data.map((product, key) => (
-          <Card key={key} product={product}></Card>
+        {data.pages.map((group, i) => (
+          <React.Fragment key={i}>
+            {group.map((product) => (
+              <Card product={product} key={product._id}></Card>
+            ))}
+          </React.Fragment>
         ))}
       </Grid>{" "}
+      <Flex mt="10" justifyContent="center">
+        <Button
+          onClick={() => fetchNextPage()}
+          isLoading={isFetchingNextPage}
+          disabled={!hasNextPage || isFetchingNextPage}
+        >
+          {isFetchingNextPage
+            ? "Loading more..."
+            : hasNextPage
+            ? "Load More"
+            : "Nothing more to load"}
+        </Button>
+      </Flex>
     </div>
   );
 }
