@@ -7,9 +7,11 @@ import {
   Heading,
   FormControl,
   FormLabel,
+  Alert,
 } from "@chakra-ui/react";
 import validationSchema from "./validations";
 import { useFormik } from "formik";
+import { fetchRegister } from "../../../api.js";
 
 function Singup() {
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
@@ -21,7 +23,15 @@ function Singup() {
       },
       validationSchema,
       onSubmit: async (values, bag) => {
-        console.log(values);
+        try {
+          const registerResponse = await fetchRegister({
+            email: values.email,
+            password: values.password,
+          });
+          console.log(registerResponse);
+        } catch (e) {
+          bag.setErrors({ general: e.response.data.message });
+        }
       },
     });
   return (
@@ -36,6 +46,9 @@ function Singup() {
       >
         <Box>
           <Heading textAlign={"center"}>Sign Up</Heading>
+        </Box>
+        <Box my={5}>
+          {errors.general && <Alert status="error">{errors.general}</Alert>}
         </Box>
         <Box mt={"4"}>
           <form onSubmit={handleSubmit}>
