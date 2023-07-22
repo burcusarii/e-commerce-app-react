@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Button } from "@chakra-ui/react";
+import { useAuth } from "../../contexts/AuthContext";
 function Navbar() {
+  const { isLoggedIn } = useAuth();
   return (
     <nav className={styles.nav}>
       <div className={styles.left}>
@@ -19,12 +21,23 @@ function Navbar() {
         </ul>
       </div>
       <div className={styles.right}>
-        <Link to={"/signin"}>
-          <Button colorScheme="blue">Login</Button>
-        </Link>
-        <Link to={"/signup"}>
-          <Button colorScheme="blue">Register</Button>
-        </Link>
+        {!isLoggedIn && (
+          <>
+            <Link to={"/signin"}>
+              <Button colorScheme="blue">Login</Button>
+            </Link>
+            <Link to={"/signup"}>
+              <Button colorScheme="blue">Register</Button>
+            </Link>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <Link to={"/profile"}>
+              <Button colorScheme="pink">Profile</Button>
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

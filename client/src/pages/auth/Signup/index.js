@@ -12,8 +12,12 @@ import {
 import validationSchema from "./validations";
 import { useFormik } from "formik";
 import { fetchRegister } from "../../../api.js";
-
+import { useAuth } from "../../../contexts/AuthContext";
 function Singup() {
+  const { login, isLoggedIn } = useAuth();
+
+  console.log("isLoggedIn", isLoggedIn);
+  // useFormik ile yapılan form tanımlamaları
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
       initialValues: {
@@ -22,18 +26,24 @@ function Singup() {
         passwordConfirm: "",
       },
       validationSchema,
+
+      // form submit olduğunda calısacak
       onSubmit: async (values, bag) => {
         try {
           const registerResponse = await fetchRegister({
             email: values.email,
             password: values.password,
           });
+          login(registerResponse);
+
           console.log(registerResponse);
         } catch (e) {
           bag.setErrors({ general: e.response.data.message });
+          console.log(e);
         }
       },
     });
+
   return (
     <Flex align={"center"} width={"%100"} justify={"center"}>
       <Box
