@@ -13,8 +13,10 @@ import validationSchema from "./validations";
 import { useFormik } from "formik";
 import { fetchRegister } from "../../../api.js";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 function Singup() {
   const { login, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   console.log("isLoggedIn", isLoggedIn);
   // useFormik ile yapılan form tanımlamaları
@@ -35,7 +37,7 @@ function Singup() {
             password: values.password,
           });
           login(registerResponse);
-
+          navigate("/profile");
           console.log(registerResponse);
         } catch (e) {
           bag.setErrors({ general: e.response.data.message });
