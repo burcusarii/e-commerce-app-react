@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Signin from "./pages/auth/Signin";
-import Singup from "./pages/auth/Signup";
+import Signup from "./pages/auth/Signup";
 import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
@@ -19,7 +19,7 @@ function App() {
             <Route path="/product/:product_id" element={<ProductDetail />} />
             <Route path="about" element={<About />} />
             <Route path="signin" element={<Signin />} />
-            <Route path="signup" element={<Singup />} />
+            <Route path="signup" element={<Signup />} />
             <Route path="/" element={<ProtectedRoute />}>
               <Route path="profile" element={<Profile />} />
             </Route>

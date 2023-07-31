@@ -14,7 +14,7 @@ import { useFormik } from "formik";
 import { fetchRegister } from "../../../api.js";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-function Singup() {
+function Signup() {
   const { login, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -122,4 +122,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;
