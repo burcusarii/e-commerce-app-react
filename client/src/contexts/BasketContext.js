@@ -10,16 +10,22 @@ const BasketProvider = ({ children }) => {
       return setItems((prev) => [...prev, data]);
     }
 
+    // tıklanan ürünün id'sine eşit olmayan bütün ürünler.
     const filtered = items.filter((item) => item._id !== findBasketItem._id);
     setItems(filtered);
   };
 
+  const removeFromBasket = (item_id) => {
+    const filtered = items.filter((item) => item._id !== item_id);
+    setItems(filtered);
+  };
   console.log("items", items);
 
   const values = {
     items,
     setItems,
     addToBasket,
+    removeFromBasket,
   };
   return (
     <BasketContext.Provider value={values}>{children}</BasketContext.Provider>

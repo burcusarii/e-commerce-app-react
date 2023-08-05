@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Basket from "./pages/Basket";
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="/" element={<ProtectedRoute />}>
               <Route path="profile" element={<Profile />} />
+              <Route path="basket" element={<Basket />} />
             </Route>
           </Routes>
         </div>

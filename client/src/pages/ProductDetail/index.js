@@ -22,8 +22,8 @@ function ProductDetail() {
     return <div>Error...</div>;
   }
 
+  // ilgili ürünün basket içerisinde olup olmadığını kontrol ediyor.
   const findBasketItem = items.find((item) => item._id === product_id);
-  console.log("finbasketıtem", findBasketItem);
   const images = data.photos.map((url) => ({ original: url, thumbnail: url }));
 
   return (
