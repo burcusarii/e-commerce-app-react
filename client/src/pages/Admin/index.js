@@ -8,17 +8,19 @@ function Admin() {
   return (
     <div>
       <nav>
-        <ul className="admin-menu">
-          <li>
-            <Link to={"/admin"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/admin/orders"}>Orders</Link>
-          </li>
-          <li>
-            <Link to={"/admin/products"}>Products</Link>
-          </li>
-        </ul>
+        <Box bg="blue.300" p="3">
+          <ul className="admin-menu">
+            <li>
+              <Link to={"/admin"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/admin/orders"}>Orders</Link>
+            </li>
+            <li>
+              <Link to={"/admin/products"}>Products</Link>
+            </li>
+          </ul>
+        </Box>
       </nav>
 
       <Outlet />
