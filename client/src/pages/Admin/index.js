@@ -3,7 +3,6 @@ import { Link, Outlet } from "react-router-dom";
 
 import "./styles.css";
 import { Box } from "@chakra-ui/react";
-import Home from "./Home";
 function Admin() {
   return (
     <div>
