@@ -44,7 +44,7 @@ function Orders() {
         </Thead>
         <Tbody>
           {data.map((item) => (
-            <Tr>
+            <Tr key={item._id}>
               <Td>{item.user.email}</Td>
               <Td>{item.adress}</Td>
               <Td isNumeric>{item.items.length}</Td>
