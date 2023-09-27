@@ -12,9 +12,9 @@ import AdminRoute from "./pages/AdminRoute";
 import Admin from "./pages/Admin";
 import Home from "./pages/Admin/Home";
 import Orders from "./pages/Admin/Orders";
-
 import AdminProducts from "./pages/Admin/AdminProducts";
 import ProductDetailEdit from "./pages/Admin/ProductDetailEdit";
+import NewProduct from "./pages/Admin/AdminProducts/NewProduct";
 function App() {
   return (
     <div>
@@ -41,6 +41,7 @@ function App() {
                     path="products/:product_id"
                     element={<ProductDetailEdit />}
                   />
+                  <Route path="products/new" element={<NewProduct />} />
                 </Route>
               </Route>
             </Route>
